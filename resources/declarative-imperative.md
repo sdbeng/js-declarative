@@ -47,4 +47,67 @@ const longNames = people.filter(name => name.length > 6)
 
 result: ["Michael", "Richard"]
 
-## 
+## React Is Declarative
+We'll get to writing React code very soon, but let's take another glimpse at it to show how it's declarative.
+
+<button onClick={activateTeleporter}>Activate Teleporter</button>
+It might seem odd, but this is valid React code and should be pretty easy to understand. Notice that there's just an onClick attribute on the button...we aren't using .addEventListener() to set up event handling with all of the steps involved to set it up. Instead, we're just declaring that we want the activateTeleporter function to run when the button is clicked.
+Declarative Code Recap
+Imperative code instructs JavaScript on how it should perform each step. With declarative code, we tell JavaScript what we want to be done, and let JavaScript take care of performing the steps.
+
+React is declarative because we write the code that we want, and React is in charge of taking our declared code and performing all of the JavaScript/DOM steps to get us to our desired result.
+
+## Unidirectional Data Flow
+Data-Binding In Other Frameworks
+Front-end frameworks like Angular and Ember make use of two-way data bindings. In two-way data binding, the data is kept in sync throughout the app no matter where it is updated. If a model changes the data, then the data updates in the view. Alternatively, if the user changes the data in the view, then the data is updated in the model. Two-way data binding sounds really powerful, but it can make the application harder to reason about and know where the data is actually being updated.
+
+### Further Research
+Angular's two-way data binding
+Ember's two-way data binding
+
+### React's Data-flow
+Data moves differently with React's unidirectional data flow. In React, the data flows from the parent component to a child component.
+
+Parent Component -> Child Component
+Data flows down from parent component to child component. Data updates are sent to the parent component where the parent performs the actual change.
+In the image above, we have two components:
+
+* a parent component
+* a child component
+
+The data lives in the parent component and is passed down to the child component. Even though the data lives in the parent component, Both the parent and the child components can use the data. However, if the data must be updated, then only the parent component should perform the update. If the child component needs to make a change to the data, then it would send the updated data to the parent component where the change will actually be made. Once the change is made in the parent component, the child component will be passed the data (that has just been updated!).
+Now, this might seem like extra work, but having the data flow in one direction and having one place where the data is modified makes it much easier to understand how the application works.
+
+## Q:A FlightPlanner component stores the information for booking a flight. It also contains DatePicker and DestinationPicker as child components. Here's what the code might look like:
+
+<FlightPlanner>
+  <DatePicker />
+  <DestinationPicker />
+</FlightPlanner>
+
+f this were a React application, which component(s) should be in charge of making updates to the data? Check all that apply.
+result: FlightPlanner
+
+* Since FlightPlanner is the parent component and stores the data, any changes to the data should be made by this component.
+
+
+## If the following sample code were a React application, which of the following components should be in charge of making updates to the data? Check all that apply.
+
+<FlightPlanner>
+
+  <LocationPicker>
+    <OriginPicker />
+    <DestinationPicker />
+  </LocationPicker>
+
+  <DatePicker />
+
+</FlightPlanner>
+
+Result:
+FlightPlanner and LocationPicker
+
+* The component that stores the data should be the one that updates de data.
+
+## Data-flow In React Recap
+In React, data flows in only one direction, from parent to child. If data is shared between sibling child components, then the data should be stored in the parent component and passed to both of the child components that need it.

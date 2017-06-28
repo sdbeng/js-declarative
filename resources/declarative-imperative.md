@@ -218,3 +218,8 @@ const element = React.createElement('div', null,
 );
 
 Here, "Hello world!" will be wrapped in a <div> when this React element renders as HTML. While we can indeed nest React elements, remember the overall call just returns a single element.
+
+## Creating Elements Recap
+In the end, remember that React is only concerned with the View layer of our app. This is what the user sees and interacts with. As such, we can use .createElement() to render HTML onto a document. More often than not, however, you'll use a syntax extension to describe what your UI should look like. This syntax extension is known as JSX, and just looks similar to plain HTML written right into a JavaScript file. The JSX gets compiled down to calls to React's .createElement() method that outputs HTML to be rendered in the browser.
+
+A great mindset to have when building React apps is to think in components. Components represent the modularity and reusability of React. You can think of your component classes as factories that produce instances of components. These component classes should follow the single responsibility principle and just "do one thing". If it manages too many different tasks, it may be a good idea to decompose your component into smaller subcomponents.

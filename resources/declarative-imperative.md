@@ -199,3 +199,22 @@ Two of the main methods that you'll be using quite a lot are:
 .filter()
 
 It's important that you're comfortable using these methods, so take some time to practice using them. Why not look through some of your existing code and try converting your for loops to .map() calls or see if you can remove any if statements by using .filter().
+
+## React UI intro
+React does not include or require a template library. You should be jumping up and down with joy because of this! There's no weird templating syntax you'll need to learn. There's no extra barrier between you and the code you're writing. So how does React accomplish this feat?
+
+React uses JavaScript objects to create React elements. We'll use these React elements to describe what we want the page to look like, and React will be in charge of generating the DOM nodes to achieve the result.
+
+Recall from the previous lesson the difference between imperative and declarative code. The React code that we write is declarative because we aren't telling React what to do, instead, we're writing React elements that describe what the page should look like, and React does all of the implementation work to get it done.
+
+## Creating elements and JSX
+.createElement() Returns One Root Element
+Recall that React.createElement( type , props , content  ); creates a single React element of a particular type. We'd normally pass in a tag such as a <div> or a <span> to represent that type, but the content argument can be another React element!
+
+Consider the following example:
+
+const element = React.createElement('div', null,
+  React.createElement('strong', null, 'Hello world!')
+);
+
+Here, "Hello world!" will be wrapped in a <div> when this React element renders as HTML. While we can indeed nest React elements, remember the overall call just returns a single element.

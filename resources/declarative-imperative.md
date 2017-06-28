@@ -111,3 +111,64 @@ FlightPlanner and LocationPicker
 
 ## Data-flow In React Recap
 In React, data flows in only one direction, from parent to child. If data is shared between sibling child components, then the data should be stored in the parent component and passed to both of the child components that need it.
+
+## map() example
+The arrow function that's passed to .map() gets called for each item in the names array! The arrow function receives the first name in the array, stores it in the name variable and returns its length. Then it does that again for the remaining two names.
+
+.map() returns a new array with the values that are returned from the arrow function:
+
+const nameLengths = names.map( name => name.length );
+
+So nameLengths will be a new array [7, 4, 5]. This is important to understand; the .map() method returns a new array, it does not modify the original array.
+
+This was just a brief overview of how the .map() method works. For a deeper dive, check out .map() on MDN.
+
+## Quiz: using map()
+const musicData = [
+    { artist: 'Adele', name: '25', sales: 1731000 },
+    { artist: 'Drake', name: 'Views', sales: 1608000 },
+    { artist: 'Beyonce', name: 'Lemonade', sales: 1554000 },
+    { artist: 'Chris Stapleton', name: 'Traveller', sales: 1085000 },
+    { artist: 'Pentatonix', name: 'A Pentatonix Christmas', sales: 904000 },
+    { artist: 'Original Broadway Cast Recording',
+      name: 'Hamilton: An American Musical', sales: 820000 },
+    { artist: 'Twenty One Pilots', name: 'Blurryface', sales: 738000 },
+    { artist: 'Prince', name: 'The Very Best of Prince', sales: 668000 },
+    { artist: 'Rihanna', name: 'Anti', sales: 603000 },
+    { artist: 'Justin Bieber', name: 'Purpose', sales: 554000 }
+];
+
+const albumSalesStrings = musicData.map(elem => `${elem.name} by ${elem.artist} sold ${elem.sales} copies`);
+
+console.log(albumSalesStrings);
+
+## Array's .filter() Method
+JavaScript's Array .filter() method is similar to the .map() method:
+
+it is called on an array
+it takes a function as an argument
+it returns a new array
+The difference is that the function passed to .filter() is used as a test, and only items in the array that pass the test are included in the new array. Let's take a look at an example:
+
+const names = ['Michael', 'Ryan', 'Tyler'];
+
+const shortNames = names.filter( name => name.length < 5 );
+Just as before, we have the starting array:
+
+const names = ['Michael', 'Ryan', 'Tyler'];
+We call .filter() on the names array and pass it a function as an argument:
+
+names.filter( name => name.length < 5 );
+
+Again, just like with .map() the arrow function that's passed to .filter() gets called for each item in the names array. The first item (i.e. 'Michael') is stored in the name variable. Then the test is performed - this is what's doing the actual filtering. It checks the length of the name. If it's 5 or greater, then it's skipped (and not included in the new array!). But if the length of the name is less than 5, then name.length < 5 returns true and the name is included in the new array!
+
+And lastly, just like with .map() the .filter() method returns a new array instead of modifying the original array:
+
+const shortNames = names.filter( name => name.length < 5 );
+
+So shortNames will be the new array ['Ryan']. Notice that it only has one name in it now, because both 'Michael' and 'Tyler' are 5 characters or longer and were filtered out.
+
+This was just a brief overview of how the .filter() method works. For a deeper dive, check out .filter() on MDN.
+
+## Quiz: using filter()
+Use the provided music data array and the .filter() method to create a new array that only contains albums with names between 10 and 25 characters long. Store the new array in a variable called results.
